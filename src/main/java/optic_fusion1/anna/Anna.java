@@ -1,13 +1,15 @@
 package optic_fusion1.anna;
 
 import java.util.Scanner;
-import optic_fusion1.anna.features.FeatureManager;
+import optic_fusion1.anna.feature.Feature;
+import optic_fusion1.anna.feature.FeatureManager;
+import optic_fusion1.anna.feature.impl.AESFeature;
 import optic_fusion1.anna.logging.CustomLogger;
 
 public class Anna extends Thread {
 
   private static final Scanner SCANNER = new Scanner(System.in);
-  private static final CustomLogger LOGGER = new CustomLogger("anna");
+  public static final CustomLogger LOGGER = new CustomLogger("anna");
   private static final FeatureManager FEATURE_MANAGER = new FeatureManager();
   private boolean running;
 
@@ -22,10 +24,11 @@ public class Anna extends Thread {
   }
 
   private void registerFeatures() {
+    registerFeature(new AESFeature(this));
   }
 
-  public CustomLogger getLogger() {
-    return LOGGER;
+  private void registerFeature(Feature feature) {
+    FEATURE_MANAGER.addFeature(feature);
   }
 
   public boolean isRunning() {

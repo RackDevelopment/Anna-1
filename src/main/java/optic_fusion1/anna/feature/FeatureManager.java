@@ -1,4 +1,4 @@
-package optic_fusion1.anna.features;
+package optic_fusion1.anna.feature;
 
 import java.util.Collection;
 import java.util.Collections;
